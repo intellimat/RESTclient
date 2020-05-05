@@ -85,8 +85,6 @@ def showAllDepartments():
     if counter == 0:
         print(f'No hay departamentos con el numero minimo de ocupantes igual a {minOcupantes}.\n\n')
 
-
-
 def askValidInput():
     validInputs = ['0','1','2','3','4']
     valid = False
@@ -113,6 +111,6 @@ while inputValue !='0':
         showVolumeBuildingsData()
     elif inputValue == '3':
         showBuildingRooms()
-    else:   #input==4
+    else:   #inputValue==4
         showAllDepartments()
     inputValue = askValidInput()
