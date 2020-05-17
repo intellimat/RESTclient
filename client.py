@@ -43,15 +43,18 @@ def showVolumeBuildingsData():
 def showBuildingRooms():
     try:
         userInput = input('\nInsert the ID or the name of the building: ')
+        print()
         buildingID = int(userInput)
         #it's an id
-        contents = urllib.request.urlopen(f'https://www.sigua.ua.es/api/pub/estancia/edificio/{userInput}/items').read()
-        json = getJSONobjectFromString(contents)
-        rooms = json['features']
-        for room in rooms:
-            properties = room['properties']
-            print(f"CódigoEstancia: {properties['codigo']}\nDenominación: {properties['denominacion']}\nSuperficie: {properties['superficie']}\nNombreActividad: {properties['nombre_actividad']}\n\n ")
-
+        try:
+            contents = urllib.request.urlopen(f'https://www.sigua.ua.es/api/pub/estancia/edificio/{userInput}/items').read()
+            json = getJSONobjectFromString(contents)
+            rooms = json['features']
+            for room in rooms:
+                properties = room['properties']
+                print(f"CódigoEstancia: {properties['codigo']}\nDenominación: {properties['denominacion']}\nSuperficie: {properties['superficie']}\nNombreActividad: {properties['nombre_actividad']}\n\n ")
+        except Exception as e:
+            print('The building does not exist. \n')
     except ValueError:
        #It's a name
         try:
